@@ -10,6 +10,6 @@ const router = express.Router();
 
 router.post("/add", authMiddleware, addServer);
 router.get("/track", authMiddleware, trackServer);
-router.get("/", authMiddleware, getServers);
+router.get("/", getServers);
 
 export default router;

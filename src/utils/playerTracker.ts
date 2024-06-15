@@ -2,9 +2,12 @@ import SocketConnection from "./socketConnection";
 import OutputMessage from "./outputMessage";
 
 class PlayerTracker extends SocketConnection {
+  message: Buffer;
+
   constructor(ip: string, port: number) {
     const buffer = Buffer.from([6, 0, 255, 1, 32, 0, 0, 0]);
     super(ip, port, buffer);
+    this.message = buffer; // Initialize this.message
   }
 
   async getPlayersCount(): Promise<number> {

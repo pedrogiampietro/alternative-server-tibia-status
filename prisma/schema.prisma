@@ -21,4 +21,11 @@ model Server {
   userId       String
   user         User   @relation(fields: [userId], references: [id])
   playersCount Int?
+  country      String
+  serverName   String
+  uptime       String
+  pts          Int
+  exp          Int
+  type         String
+  version      String
 }
