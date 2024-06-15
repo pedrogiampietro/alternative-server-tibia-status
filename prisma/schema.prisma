@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id       String   @id @default(uuid())
+  email    String   @unique
+  password String
+  servers  Server[]
+}
+
+model Server {
+  id           String @id @default(uuid())
+  ip           String
+  port         Int
+  userId       String
+  user         User   @relation(fields: [userId], references: [id])
+  playersCount Int?
+}
