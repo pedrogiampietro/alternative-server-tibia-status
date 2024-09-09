@@ -21,7 +21,7 @@ class SocketConnection {
 
       this.client.on("data", (data) => {
         resolve(data);
-        this.client.destroy(); // close the connection
+        this.client.destroy();
       });
 
       this.client.on("error", (error) => {

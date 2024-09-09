@@ -7,7 +7,7 @@ class PlayerTracker extends SocketConnection {
   constructor(ip: string, port: number) {
     const buffer = Buffer.from([6, 0, 255, 1, 32, 0, 0, 0]);
     super(ip, port, buffer);
-    this.message = buffer; // Initialize this.message
+    this.message = buffer;
   }
 
   async getPlayersCount(): Promise<number> {
@@ -15,13 +15,12 @@ class PlayerTracker extends SocketConnection {
       const message = await this.socketConnect(this.ip, this.port, this.buffer);
       console.log("Received message:", message);
 
-      // Ensure the message is a Buffer and has the expected length
       if (!Buffer.isBuffer(message) || message.length < 5) {
         throw new Error(`Invalid message format or length: ${message}`);
       }
 
       const output = new OutputMessage(message);
-      output.getU16(); // Skip initial 2 bytes
+      output.getU16();
       const firstByte = output.getByte();
       console.log("First byte:", firstByte);
 
